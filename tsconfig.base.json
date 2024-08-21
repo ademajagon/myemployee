@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@myemployee/components": ["apps/frontend/components/index.ts"],
+      "@myemployee/ui-components": ["apps/frontend/components/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
