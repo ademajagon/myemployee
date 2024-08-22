@@ -8,6 +8,14 @@ export class AddressService {
   constructor(private readonly prisma: PrismaService) {}
 
   async createAddress(data: CreateAddressDto) {
+    const employee = await this.prisma.employee.findUnique({
+      where: { id: data.employeeId },
+    });
+
+    if (!employee) {
+      throw new NotFoundException('Employee not found');
+    }
+
     return this.prisma.address.create({
       data,
     });

@@ -32,7 +32,7 @@ export class EmployeeService {
   async getEmployeeById(id: number): Promise<CustomResponse<any>> {
     const employee = await this.prisma.employee.findUnique({
       where: { id },
-      include: { addresses: true },
+      include: { addresses: true }, // Include addresses
     });
     if (!employee) {
       throw new CustomException('Employee not found', HttpStatus.NOT_FOUND);
