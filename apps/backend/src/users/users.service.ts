@@ -33,7 +33,6 @@ export class UsersService {
     return this.prisma.user.findUnique({ where: { username } });
   }
 
-  // If you need to find by id, make sure it's implemented correctly
   async findById(id: number): Promise<User | null> {
     return this.prisma.user.findUnique({ where: { id } });
   }
