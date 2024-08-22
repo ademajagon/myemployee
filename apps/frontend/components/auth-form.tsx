@@ -10,16 +10,23 @@ import { Input } from './ui/input';
 import { useAuth } from '../hooks/useAuth';
 import { login, register } from '../services/authService';
 import { useRouter } from 'next/navigation';
+import { useUserStore } from '../stores/userStore';
+import { decodeToken } from '../utils/jwt';
 
 interface AuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
   formType: 'login' | 'register';
 }
 
+interface DecodedToken {
+  username: string;
+  role: string;
+}
+
 export function AuthForm({ formType, className, ...props }: AuthFormProps) {
   const isLogin = formType === 'login';
-  const { setToken } = useAuth();
   const { toast } = useToast();
   const router = useRouter();
+  const { setToken, setUser } = useUserStore();
 
   const initialValues = {
     username: '',
@@ -41,22 +48,19 @@ export function AuthForm({ formType, className, ...props }: AuthFormProps) {
       const response = isLogin
         ? await login(values.username, values.password)
         : await register(values.username, values.password);
+      const { access_token } = response;
 
-      console.log(response);
+      setToken(access_token);
 
-      setToken(response.access_token);
-      localStorage.setItem('access_token', response.access_token); // or use cookies
+      const decodedToken = decodeToken<DecodedToken>(access_token);
+      setUser({ username: decodedToken.username, role: decodedToken.role });
 
-      toast({
-        title: isLogin ? 'Login successful' : 'Registration successful',
-        description: `Welcome, ${response.username}`,
-      });
+      localStorage.setItem('access_token', access_token);
 
-      // Redirect to dashboard or another page
       router.push('/dashboard');
     } catch (error: any) {
       toast({
-        title: 'An error occurred',
+        title: 'Error',
         description: error.message,
       });
     } finally {

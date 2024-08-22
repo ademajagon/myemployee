@@ -1,10 +1,13 @@
 'use client';
 
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, ReactNode } from 'react';
+import { useUserStore } from '../stores/userStore';
 
 interface AuthContextProps {
   token: string | null;
-  setToken: (token: string | null) => void;
+  setToken: (token: string) => void;
+  user: { username: string; role: string } | null;
+  setUser: (user: { username: string; role: string }) => void;
   logout: () => void;
 }
 
@@ -12,18 +15,13 @@ export const AuthContext = createContext<AuthContextProps | undefined>(
   undefined
 );
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [token, setToken] = useState<string | null>(null);
-
-  const logout = () => {
-    setToken(null);
-    localStorage.removeItem('access_token');
-  };
+  const { token, user, setToken, setUser, logout } = useUserStore();
 
   return (
-    <AuthContext.Provider value={{ token, setToken, logout }}>
+    <AuthContext.Provider value={{ token, setToken, user, setUser, logout }}>
       {children}
     </AuthContext.Provider>
   );
