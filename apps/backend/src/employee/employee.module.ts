@@ -4,7 +4,6 @@ import { EmployeeController } from './employee.controller';
 import { PrismaService } from '../prisma.service';
 
 @Module({
-  imports: [],
   controllers: [EmployeeController],
   providers: [EmployeeService, PrismaService],
 })
