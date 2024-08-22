@@ -28,3 +28,16 @@ model Address {
   state      String
   postalCode String
 }
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  role      Role     @default(employee)
+}
+
+enum Role {
+  admin
+  employee
+}
+ 
