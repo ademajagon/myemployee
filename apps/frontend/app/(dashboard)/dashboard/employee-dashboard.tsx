@@ -1,12 +1,12 @@
 'use client';
 
-import { Button } from '../../../../components/ui/button';
+import { Button } from '../../../components/ui/button';
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from '../../../../components/ui/tabs';
+} from '../../../components/ui/tabs';
 
 export default function EmployeeDashboard() {
   return (
@@ -27,6 +27,9 @@ export default function EmployeeDashboard() {
           </TabsTrigger>
         </TabsList>
       </Tabs>
+
+      <p>Viewing His Profile</p>
+      <p>Changing His Data</p>
     </div>
   );
 }
