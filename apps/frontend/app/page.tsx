@@ -1,23 +1,15 @@
-import { Avatar, AvatarFallback, AvatarImage } from '../components/ui/avatar';
+import { AuthForm } from '../components/auth-form';
+import AuthLayout from '../components/auth-layout';
+// import { UserLoginForm } from '../components/user-login-form';
 
-export default function Index() {
+export default function Home() {
   return (
-    <div>
-      <div className="wrapper">
-        <div className="container">
-          <div id="welcome">
-            <h1 className="text-violet-700 text-lg">
-              <span> Hello there, </span>
-              Welcome Employee 👋
-            </h1>
-          </div>
-
-          <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
-        </div>
-      </div>
-    </div>
+    <AuthLayout
+      title="Log in to Your Account"
+      linkHref="/register"
+      linkText="Register"
+    >
+      <AuthForm formType="login" />
+    </AuthLayout>
   );
 }
