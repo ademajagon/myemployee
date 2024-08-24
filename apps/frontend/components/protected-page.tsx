@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { isAuthenticated } from '../utils/auth'; // Utility to check token
+import { isAuthenticated } from '../utils/auth';
 
 const ProtectedPage: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -10,17 +10,17 @@ const ProtectedPage: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     if (!isAuthenticated()) {
-      router.push('/'); // Redirect to login page if not authenticated
+      router.push('/');
     } else {
-      setIsLoading(false); // Stop loading when authenticated
+      setIsLoading(false);
     }
   }, [router]);
 
   if (isLoading) {
-    return <div>Loading...</div>; // Show loading state while checking authentication
+    return <div>Loading...</div>;
   }
 
-  return <>{children}</>; // Render protected content when authenticated
+  return <>{children}</>;
 };
 
 export default ProtectedPage;

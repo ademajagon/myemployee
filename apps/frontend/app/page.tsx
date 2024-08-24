@@ -1,6 +1,5 @@
 import { AuthForm } from '../components/auth-form';
 import AuthLayout from '../components/auth-layout';
-// import { UserLoginForm } from '../components/user-login-form';
 
 export default function Home() {
   return (

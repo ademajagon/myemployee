@@ -8,7 +8,7 @@ import {
   TableCell,
 } from '../../../../components/ui/table';
 import { Button } from '../../../../components/ui/button';
-import { EmployeeEditModal } from './employee-edit'; // Adjust the path as necessary
+import { EmployeeEditModal } from './employee-edit';
 
 interface Employee {
   id: number;
@@ -38,7 +38,6 @@ export function AdminTable({ employees }: AdminTableProps) {
 
   const totalPages = Math.ceil(employees.length / employeesPerPage);
 
-  // Sort employees
   const sortedEmployees = [...employees].sort((a, b) => {
     let comparison = 0;
     if (sortColumn === 'startDate') {
@@ -90,11 +89,9 @@ export function AdminTable({ employees }: AdminTableProps) {
   };
 
   const handleUpdateEmployee = (updatedEmployee: Employee) => {
-    // Update the employees list with the updated employee details
     const updatedEmployees = employees.map((emp) =>
       emp.id === updatedEmployee.id ? updatedEmployee : emp
     );
-    // Trigger a state update or refetch data here if needed
     setSelectedEmployee(null);
   };
 

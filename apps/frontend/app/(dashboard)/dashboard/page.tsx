@@ -8,8 +8,6 @@ import ProtectedPage from '../../../components/protected-page';
 export default function DashboardPage() {
   const { user } = useUserStore();
 
-  console.log(user, 'USER');
-
   return (
     <ProtectedPage>
       {user?.role === 'admin' ? <AdminDashboard /> : <EmployeeDashboard />}

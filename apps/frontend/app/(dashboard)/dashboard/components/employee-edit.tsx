@@ -103,8 +103,8 @@ export function EmployeeEditModal({
         description: 'The employee has been updated successfully.',
       });
 
-      onUpdate(response.data); // Pass updated employee data
-      onClose(); // Close the modal
+      onUpdate(response.data);
+      onClose();
     } catch (error) {
       console.error('Failed to update employee:', error);
       toast({

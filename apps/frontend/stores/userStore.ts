@@ -11,7 +11,6 @@ interface UserState {
 
 const getInitialState = () => {
   if (typeof window !== 'undefined') {
-    // Code is running on the client side
     const token = localStorage.getItem('access_token');
     const user = token
       ? decodeToken<{ username: string; role: string }>(token)

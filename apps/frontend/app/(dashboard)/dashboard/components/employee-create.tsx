@@ -33,7 +33,7 @@ export function EmployeeCreateModal() {
   const [lastName, setLastName] = useState('');
   const [jobTitle, setJobTitle] = useState('');
   const [photo, setPhoto] = useState<File | null>(null);
-  const [isOpen, setIsOpen] = useState(false); // State to control modal visibility
+  const [isOpen, setIsOpen] = useState(false);
 
   const { toast } = useToast();
 
@@ -76,7 +76,7 @@ export function EmployeeCreateModal() {
         description: 'The employee has been created successfully.',
       });
 
-      setIsOpen(false); // Close the modal on success
+      setIsOpen(false);
     } catch (error) {
       console.error('Failed to create employee:', error);
       toast({
